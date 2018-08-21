@@ -20,6 +20,6 @@ public interface daoUser {
     @Delete
     void delete(User... users);
 
-    @Query("Select * FROM USER WHERE id==:userId")
-    User[] loadPostUsers(String userId);
+    @Query("Select * FROM USER INNER JOIN COMMENT ON User.id=Comment.userId WHERE postId==:postId")
+    User[] loadPostUsers(int postId);
 }

@@ -2,27 +2,30 @@ package e.sh.karamozibd.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "post")
+@Entity(tableName = "post",
+        foreignKeys = @ForeignKey(entity = User.class,parentColumns = "id",childColumns = "userId"))
 public class Post {
 
-    @PrimaryKey
-    private String id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     @ColumnInfo(name = "title")
     private String title;
     @ColumnInfo(name = "discreption")
     private String discreption;
     @ColumnInfo(name = "avatar")
     private String avatar;
-    private String userId;
+    @ColumnInfo(name = "userId")
+    private int userId;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -50,11 +53,11 @@ public class Post {
         this.avatar = avatar;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }

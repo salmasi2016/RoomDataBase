@@ -12,17 +12,20 @@ import e.sh.karamozibd.entity.Comment;
 import e.sh.karamozibd.entity.Post;
 import e.sh.karamozibd.entity.User;
 
-@Database(entities = {User.class,Post.class, Comment.class},version = 1,exportSchema = false)
+@Database(entities = {User.class, Post.class, Comment.class}, version = 1, exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
     private static AppDataBase appDataBase;
+
     public abstract daoUser daoUser();
+
     public abstract daoPost daoPost();
+
     public abstract daoComment daoComment();
 
-    public static AppDataBase newInstance(Context context){
-        if (appDataBase==null){
-            appDataBase= Room.databaseBuilder(context.getApplicationContext(),AppDataBase.class,"appDataBase")
-                    .allowMainThreadQueries().build();
+    public static AppDataBase newInstance(Context context) {
+        if (appDataBase == null) {
+            appDataBase = Room.databaseBuilder(context.getApplicationContext(), AppDataBase.class, "appDataBase")
+                    .build();
         }
         return appDataBase;
     }

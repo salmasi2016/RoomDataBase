@@ -13,13 +13,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AppDataBase appDataBase=AppDataBase.newInstance(this);
-        DataGenerator.with(appDataBase).generateUser();
-        DataGenerator.with(appDataBase).generatePost();
-        DataGenerator.with(appDataBase).generateComment();
+        final AppDataBase appDataBase=AppDataBase.newInstance(this);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                DataGenerator.with(appDataBase).generateUser();
+                DataGenerator.with(appDataBase).generatePost();
+                DataGenerator.with(appDataBase).generateComment();
 
-        Logger.displayPostUsersInLog(appDataBase.daoUser().loadPostUsers("111"));
-        Logger.displayPostCommentsInLog(appDataBase.daoComment().loadPostComments("212"));
-        Logger.displayUserCommentsInLog(appDataBase.daoComment().loadUserComments("111"));
+                Logger.displayPostUsersInLog(appDataBase.daoUser().loadPostUsers(211));
+                Logger.displayPostCommentsInLog(appDataBase.daoComment().loadPostComments(212));
+                Logger.displayUserCommentsInLog(appDataBase.daoComment().loadUserComments(111));
+                Logger.displayCountUserCommentsInLog(appDataBase.daoComment().countUserComments(111));
+            }
+        }).start();
     }
 }

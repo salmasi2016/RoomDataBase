@@ -2,26 +2,31 @@ package e.sh.karamozibd.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "comment")
+@Entity(tableName = "comment",
+        foreignKeys = {@ForeignKey(entity = User.class, parentColumns = "id", childColumns = "userId")
+                ,@ForeignKey(entity = Post.class, parentColumns = "id", childColumns = "postId")})
 public class Comment {
 
-    @PrimaryKey
-    private String id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     @ColumnInfo(name = "username")
     private String username;
     @ColumnInfo(name = "text")
     private String text;
-    private String userId;
-    private String postId;
+    @ColumnInfo(name = "userId")
+    private int userId;
+    @ColumnInfo(name = "postId")
+    private int postId;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,19 +46,19 @@ public class Comment {
         this.text = text;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public String getPostId() {
+    public int getPostId() {
         return postId;
     }
 
-    public void setPostId(String postId) {
+    public void setPostId(int postId) {
         this.postId = postId;
     }
 }

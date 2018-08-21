@@ -8,7 +8,7 @@ import e.sh.karamozibd.entity.User;
 public class Logger {
 
     public static void displayPostUsersInLog(User[] users) {
-        Log.i("sina", "****************");
+        Log.i("sina", "***PostUsers***");
         if (users == null) {
             return;
         }
@@ -20,7 +20,7 @@ public class Logger {
     }
 
     public static void displayPostCommentsInLog(Comment[] comments) {
-        Log.i("sina", "****************");
+        Log.i("sina", "***PostComments***");
         if (comments == null) {
             return;
         }
@@ -32,7 +32,7 @@ public class Logger {
     }
 
     public static void displayUserCommentsInLog(Comment[] comments) {
-        Log.i("sina", "****************");
+        Log.i("sina", "***UserComments***");
         if (comments == null) {
             return;
         }
@@ -41,5 +41,10 @@ public class Logger {
                     + ", name: " + comment.getUsername()
                     + ", family: " + comment.getText());
         }
+    }
+
+    public static void displayCountUserCommentsInLog(int count) {
+        Log.i("sina", "***CountUserComments***");
+            Log.i("sina","count: "+count);
     }
 }

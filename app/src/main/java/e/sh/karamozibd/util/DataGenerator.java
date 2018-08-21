@@ -24,14 +24,14 @@ public class DataGenerator {
             return;
         }
         User[] users=new User[4];
-        users[0]=userInstance("111","sina","almasi","1110");
-        users[1]=userInstance("112","hediye","moloudi","1120");
-        users[2]=userInstance("113","mohammad","sianaki","1130");
-        users[3]=userInstance("114","negar","almasi","1140");
+        users[0]=userInstance(111,"sina","almasi","1110");
+        users[1]=userInstance(112,"hediye","moloudi","1120");
+        users[2]=userInstance(113,"mohammad","sianaki","1130");
+        users[3]=userInstance(114,"negar","almasi","1140");
         dataBase.daoUser().insert(users);
     }
 
-    private User userInstance(String id,String name,String family,String avatar){
+    private User userInstance(int id,String name,String family,String avatar){
         User user=new User();
         user.setId(id);
         user.setName(name);
@@ -45,13 +45,13 @@ public class DataGenerator {
             return;
         }
         Post[] posts=new Post[3];
-        posts[0]=postInstance("211","post1","football","2110","1120");
-        posts[1]=postInstance("212","post2","football","2120","1110");
-        posts[2]=postInstance("213","post3","shena","2130","1110");
+        posts[0]=postInstance(211,"post1","football","2110",112);
+        posts[1]=postInstance(212,"post2","football","2120",111);
+        posts[2]=postInstance(213,"post3","shena","2130",111);
         dataBase.daoPost().insert(posts);
     }
 
-    private Post postInstance(String id,String title,String discreption,String avatar,String userId){
+    private Post postInstance(int id,String title,String discreption,String avatar,int userId){
         Post post=new Post();
         post.setId(id);
         post.setTitle(title);
@@ -66,15 +66,15 @@ public class DataGenerator {
             return;
         }
         Comment[] comments=new Comment[5];
-        comments[0]=commentInstance("311","sina","ok1","1110","211");
-        comments[1]=commentInstance("312","hediye","ok2","1120","211");
-        comments[2]=commentInstance("313","sina","ok3","1110","212");
-        comments[3]=commentInstance("314","negar","ok4","1140","211");
-        comments[4]=commentInstance("315","hediye","ok5","1120","213");
+        comments[0]=commentInstance(311,"sina","ok1",111,211);
+        comments[1]=commentInstance(312,"hediye","ok2",112,211);
+        comments[2]=commentInstance(313,"sina","ok3",111,212);
+        comments[3]=commentInstance(314,"negar","ok4",114,211);
+        comments[4]=commentInstance(315,"hediye","ok5",112,213);
         dataBase.daoComment().insert(comments);
     }
 
-    private Comment commentInstance(String id,String username,String text,String userId,String postId){
+    private Comment commentInstance(int id,String username,String text,int userId,int postId){
         Comment comment=new Comment();
         comment.setId(id);
         comment.setUsername(username);

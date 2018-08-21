@@ -20,9 +20,12 @@ public interface daoComment {
     @Delete
     void delete(Comment... comments);
 
-    @Query("Select * FROM comment WHERE postId==:postId")
-    Comment[] loadPostComments(String postId);
+    @Query("Select * FROM Comment WHERE postId==:postId")
+    Comment[] loadPostComments(int postId);
 
-    @Query("Select * FROM comment WHERE userId==:userId")
-    Comment[] loadUserComments(String userId);
+    @Query("Select * FROM Comment WHERE userId==:userId")
+    Comment[] loadUserComments(int userId);
+
+    @Query("Select COUNT(*) FROM Comment WHERE userId==:userId")
+    int countUserComments(int userId);
 }
